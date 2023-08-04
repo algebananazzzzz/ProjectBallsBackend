@@ -46,7 +46,7 @@ jobs:
           echo AWS_REGION=$AWS_REGION >> .aws/credentials
 
       - name: Generate Application Configuration
-        id: gen app_config
+        id: gen_app_config
         run: node .polymer/gen.js
 
       - name: Generate Application Build
