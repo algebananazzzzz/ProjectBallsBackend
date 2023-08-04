@@ -54,7 +54,7 @@ jobs:
         run: node .polymer/gen.js
 
       - name: Generate Application Build
-        id: webpack build
+        id: webpack_build
         run: cd app; npm run build
       
       - name: Terraform Format
