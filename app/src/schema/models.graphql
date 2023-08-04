@@ -1,0 +1,20 @@
+type Video {
+    key: String
+    name: String
+    description: String
+    userId: ID!
+    id: ID!
+    snippets: [Snippet]
+}
+
+type Snippet {
+    labels: [Float]
+    start_time: Float
+    end_time: Float
+    key: String
+    name: String
+    userId: ID!
+    id: ID!
+    videoId: ID!
+}
+

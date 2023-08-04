@@ -1,0 +1,14 @@
+type Mutation {
+    createVideo(id: ID! key: String!, name: String!, description: String): Video
+    updateVideo(id: ID!, name: String, description: String): Video
+    deleteVideo(id: ID!): ID
+    createSnippet(id: ID!, videoKey: String!, videoId: ID!, name: String, labels: [Float], start_time: Float!, end_time: Float!): Snippet
+    updateSnippet(id: ID!, videoKey: String!, key: String, name: String, labels: [Float], start_time: Float, end_time: Float): Snippet
+    deleteSnippet(id: ID!): ID
+    deleteSnippets(snippets: [DeleteSnippetsInput]!): [ID]
+}
+
+input DeleteSnippetsInput {
+    id: ID!
+    key: String!
+}

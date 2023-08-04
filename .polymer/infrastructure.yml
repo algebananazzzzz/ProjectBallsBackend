@@ -1,0 +1,77 @@
+application_name: ProjectBalls
+schema_files:
+  app_config_output: app/src/app_config.json
+  graphql_schema_output: app/src/schema/models.graphql
+s3:
+  data_bucket:
+    name: algebananazzzzz-projectballs-data
+lambda:
+  projectballs:
+    function_name: Projectballs-%s-function
+    basedir: app/dist
+    envfile_basedir: .polymer/lambda_config
+api_lambda_integration:
+  projectballs:
+    cors_configuration: 
+      allow_origins: 
+        - "*"
+      allow_methods: 
+        - OPTIONS
+        - GET
+        - POST
+      allow_headers: 
+        - "*"
+      expose_headers: 
+        - "*"
+      max_age: 300
+    cors_handler_name: cors-preflight-handler
+cognito:
+  usergroups:
+    - admin
+    - user
+  cognito_custom_css: null
+  custom_attributes:
+    labels:
+      type: S
+      min_length: 0
+      max_length: 2048
+  identity_pool:
+    name: ProjectBallsIdentityPool
+dynamodb:
+  video:
+    table_name: video-ProjectBalls
+    key_attributes:
+      id: S
+      userId: S
+    attributes:
+      key: S
+      name: S
+      description: S
+    hash_key: userId
+    range_key: id
+    read_capacity: 2
+    write_capacity: 2
+    child: snippet
+  snippet:
+    table_name: snippet-ProjectBalls
+    key_attributes:
+      id: S
+      videoId: S
+      userId: S
+    attributes:
+      labels: NS
+      start_time: N
+      end_time: N
+      key: S
+      name: S
+    hash_key: userId
+    range_key: id
+    global_secondary_index:
+      videoId-id:
+        hash_key: videoId
+        range_key: id
+        write_capacity: 2
+        read_capacity: 2
+        projection_type: "ALL"
+    read_capacity: 2
+    write_capacity: 2

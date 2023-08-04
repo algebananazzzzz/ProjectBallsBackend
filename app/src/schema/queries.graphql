@@ -1,0 +1,10 @@
+type Query {
+  videoByID(id: ID!): Video
+  videosByUser: [Video]!
+  snippetByID(id: ID!): Snippet
+  snippetsByUser: [Snippet]!
+  snippetsByVideoID(videoId: ID!): [Snippet]!
+  snippetsByLabels(labels: [Float]!, operand: String): [Snippet]!
+  generateVideoIDKey: Video
+  getLabels: Label
+}

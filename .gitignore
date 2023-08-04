@@ -1,0 +1,44 @@
+# Node modules files (modify necessarily if webpack requires)
+**/node_modules
+**/package-lock.json
+
+# App specific stuff 
+app/tmp/
+app/test
+app/src/index.js
+app/src/serverargs.js
+app/src/app_config.json
+
+# Lambda upload zip files and dist/ dir
+upload/
+app/dist/
+
+# Local .terraform directories
+**/.terraform/*
+
+# AWS credentials file (if any)
+.aws
+*/.aws
+
+# Stage configuration file
+*.env.json
+!demo.*.*.json
+
+# .tfstate and lock files
+*.tfstate
+*.tfstate.*
+*.terraform.lock.hcl
+
+# Exclude all .tfvars files
+*.tfvars
+*.tfvars.json
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc

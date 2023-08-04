@@ -1,0 +1,5 @@
+scalar JSON
+
+type Label {
+    labels: JSON
+}
