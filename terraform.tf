@@ -8,9 +8,9 @@ terraform {
     }
   }
 
-  # cloud {
-  #   workspaces {
-  #     tags = ["github-actions"]
-  #   }
-  # }
+  cloud {
+    workspaces {
+      tags = ["github-actions"]
+    }
+  }
 }
