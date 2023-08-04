@@ -20,10 +20,6 @@ app/dist/
 .aws
 */.aws
 
-# Stage configuration file
-*.env.json
-!demo.*.*.json
-
 # .tfstate and lock files
 *.tfstate
 *.tfstate.*
