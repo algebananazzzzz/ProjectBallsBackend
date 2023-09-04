@@ -1,17 +1,17 @@
 application_name: ProjectBalls
 schema_files:
-  app_config_output: app/src/app_config.json
-  graphql_schema_output: app/src/schema/models.graphql
+  app_config_output: app/api/src/app_config.json
+  graphql_schema_output: app/api/src/schema/models.graphql
 s3:
   data_bucket:
     name: algebananazzzzz-projectballs-data
 lambda:
-  projectballs:
-    function_name: Projectballs-%s-function
-    basedir: app/dist
-    envfile_basedir: .polymer/lambda_config
+  projectballsapi:
+    function_name: ProjectballsApi-%s-function
+    basedir: app/api/dist
+    envfile_basedir: .polymer/api_config
 api_lambda_integration:
-  projectballs:
+  projectballsapi:
     cors_configuration: 
       allow_origins: 
         - "*"

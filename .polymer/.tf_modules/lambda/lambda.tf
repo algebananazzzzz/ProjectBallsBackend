@@ -1,7 +1,7 @@
 data "archive_file" "lambda" {
   type        = "zip"
   source_dir  = var.basedir
-  output_path = "${path.root}/upload/lambda.zip"
+  output_path = "${path.root}/upload/${var.lambda_function_name}.zip"
 }
 
 locals {
@@ -24,10 +24,6 @@ resource "aws_lambda_function" "lambda" {
     variables = tomap(try(local.decoded_envfile.environment_variables, {}))
   }
 
-  ephemeral_storage {
-    size = lookup(local.decoded_envfile, "ephemeral_storage", 512)
-  }
-
   dynamic "vpc_config" {
     for_each = contains(keys(local.decoded_envfile), "vpc_config") ? [1] : []
 
@@ -47,7 +43,7 @@ resource "aws_lambda_function" "lambda" {
 resource "aws_lambda_alias" "lambda" {
   name             = var.lambda_alias_name
   function_name    = var.lambda_function_name
-  function_version = "52"
+  function_version = "1"
 
   # To use CodeDeploy, ignore change of function_version
   lifecycle {

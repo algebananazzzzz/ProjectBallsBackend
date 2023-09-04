@@ -1,8 +1,4 @@
-variable "deployapp_name" {
-  type = string
-}
-
-variable "deploygroup_name" {
+variable "application_stage" {
   type = string
 }
 

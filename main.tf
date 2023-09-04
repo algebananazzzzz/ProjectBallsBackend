@@ -90,14 +90,17 @@ module "lambda" {
 module "codedeploy" {
   for_each             = local.lambda_config
   source               = "./.polymer/.tf_modules/codedeploy"
-  deployapp_name       = format("%s%s-deploy", local.application_name, var.application_stage)
-  deploygroup_name     = format("%s%s-deploygroup", local.application_name, var.application_stage)
+  application_stage    = var.application_stage
   lambda_function_name = module.lambda[each.key].function_name
   lambda_version       = module.lambda[each.key].version
   lambda_alias_name    = upper(var.application_stage)
   lambda_alias_version = module.lambda[each.key].alias_version
   deployment_config    = var.deployment_config
   aws_region           = var.aws_region
+
+  depends_on = [
+    module.lambda
+  ]
 }
 
 module "api" {
@@ -110,4 +113,9 @@ module "api" {
   lambda_alias_arn     = module.lambda[each.key].alias_arn
   cors_handler_name    = lookup(each.value, "cors_handler_name", "")
   cors_configuration   = contains(keys(each.value), "cors_configuration") ? [each.value.cors_configuration] : []
+
+  depends_on = [
+    module.lambda
+  ]
 }
+

@@ -4,12 +4,12 @@
 
 resource "aws_codedeploy_app" "deploy" {
   compute_platform = "Lambda"
-  name             = var.deployapp_name
+  name             = "${var.lambda_function_name}${var.application_stage}-deploy"
 }
 
 resource "aws_codedeploy_deployment_group" "deploy" {
-  app_name               = var.deployapp_name
-  deployment_group_name  = var.deploygroup_name
+  app_name               = "${var.lambda_function_name}${var.application_stage}-deploy"
+  deployment_group_name  = "${var.lambda_function_name}${var.application_stage}-deploygroup"
   service_role_arn       = aws_iam_role.codedeploy_deployment_group_role.arn
   deployment_config_name = var.deployment_config
 

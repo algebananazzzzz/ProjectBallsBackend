@@ -1,5 +1,5 @@
 resource "aws_iam_role" "codedeploy_deployment_group_role" {
-  name = format("%sRole", var.deploygroup_name)
+  name = "${var.lambda_function_name}${var.application_stage}-deploygroupRole"
 
   assume_role_policy = jsonencode(
     {
